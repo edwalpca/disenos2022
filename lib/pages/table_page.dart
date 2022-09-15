@@ -187,7 +187,7 @@ class BoxOpcionMenu extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
           child: Container(
             height: 180,
             decoration: BoxDecoration(

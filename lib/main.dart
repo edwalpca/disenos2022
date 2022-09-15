@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Diseno de Layouts',
         debugShowCheckedModeBanner: false,
-        initialRoute: 'table',
+        initialRoute: 'view',
         routes: {
           'inicio': ( _ ) => const HomePage(),
           'view'  : ( _ ) => const ViewPage(),

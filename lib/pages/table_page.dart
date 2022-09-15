@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -7,43 +9,60 @@ class TablePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: const Color(0XFF353568),
-          body: SingleChildScrollView(
-            child: Stack(
-              children: [
-          
-                //Recuadro Rosado de Fondo
-                const  BackGroundBox(),
-          
-                //Descripcion Pantalla
-                const DescriptionWidget(),
-          
-                //Table Opciones
-                Container(
-                  padding: const EdgeInsets.only(top:120),
-                  child: const  TableWidgetMenu()),
-              ],
-            ),
+        backgroundColor: const Color(0XFF353568),
+        body: SingleChildScrollView(
+          child: Stack(
+            children: [
+              //Recuadro Rosado de Fondo
+              const BackGroundBox(),
+
+              //Descripcion Pantalla
+              const DescriptionWidget(),
+
+              //Table Opciones
+              Container(
+                  padding: const EdgeInsets.only(top: 120),
+                  child: const TableWidgetMenu()),
+            ],
           ),
-          bottomNavigationBar: Container(
-            //color: Colors.redAccent,
-            width: double.infinity,
-            height: 45,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Icon(Icons.calendar_month_sharp, size: 25, color: Colors.white,),
-                Icon(Icons.bubble_chart, size: 25,color: Colors.grey,),
-                Icon(Icons.group, size: 25, color: Colors.grey,),
-              ],
-            ),
-          ) ,
-          
-          ),
+        ),
+        bottomNavigationBar: const CustomBottomNavigatorBar(),
+      ),
     );
   }
 }
 
+class CustomBottomNavigatorBar extends StatelessWidget {
+  const CustomBottomNavigatorBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      selectedItemColor: Colors.pink,
+      backgroundColor: const Color.fromRGBO(55, 57, 84, 1),
+      unselectedItemColor: const Color.fromRGBO(116, 117, 152, 1),
+      currentIndex: 0,      
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon( Icons.calendar_today_outlined ),
+          label: 'Calendario'
+        ),
+        BottomNavigationBarItem(
+          icon: Icon( Icons.pie_chart_outline_outlined ),
+          label: 'Gráfica'
+        ),
+        BottomNavigationBarItem(
+          icon: Icon( Icons.supervised_user_circle_outlined ),
+          label: 'Usuarios'
+        ),
+      ],
+    );
+  }
+}
 
 //Widget de Descripcion del top o Header
 class DescriptionWidget extends StatelessWidget {
@@ -62,11 +81,25 @@ class DescriptionWidget extends StatelessWidget {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const  [
+          children: const [
             SizedBox(height: 8),
-            Text('Opciones Principales', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 36, color: Colors.white),),
-            SizedBox(height: 8,),
-            Text('Ea mollit non qui ipsum nisi aute consectetur.', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18, color: Colors.white),)
+            Text(
+              'Opciones Principales',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 36,
+                  color: Colors.white),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              'Ea mollit non qui ipsum nisi aute consectetur.',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.white),
+            )
           ],
         ),
       ),
@@ -121,9 +154,6 @@ class TableWidgetMenu extends StatelessWidget {
             icon: Icons.local_grocery_store_outlined,
           ),
         ]),
-
-
-
       ],
     );
   }
@@ -139,7 +169,7 @@ class BoxOpcionMenu extends StatelessWidget {
   const BoxOpcionMenu({
     Key? key,
     required this.texto,
-    required this.color, 
+    required this.color,
     required this.icon,
   }) : super(key: key);
 
@@ -150,41 +180,55 @@ class BoxOpcionMenu extends StatelessWidget {
       width: 200,
       height: 175,
       decoration: BoxDecoration(
+        //color: Colors.amber,
         color: Colors.blueGrey.withOpacity(.5),
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            width: 75,
-            height: 75,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Container(
+            height: 180,
             decoration: BoxDecoration(
-                color: color,
-                borderRadius: const BorderRadius.all(Radius.circular(50))),
-            child: Center(
-                child: Icon(
-              icon,
-              size: 40,
-              color: Colors.white,
-            )),
+                //color:Colors.amber,
+                //color: const Color.fromRGBO(62, 66, 107, 0.7),
+                borderRadius: BorderRadius.circular(20)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  width: 75,
+                  height: 75,
+                  decoration: BoxDecoration(
+                      color: color, borderRadius: BorderRadius.circular(20)),
+                  child: Center(
+                      child: Icon(
+                    icon,
+                    size: 40,
+                    color: Colors.white,
+                  )),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  texto,
+                  style: const TextStyle(fontSize: 25, color: Colors.white),
+                )
+              ],
+            ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          Text(
-            texto,
-            style: const TextStyle(fontSize: 25, color: Colors.white),
-          )
-        ],
+        ),
       ),
     );
   }
 }
 
-//Cuadro BackGround de Fondo Ubicado en la parte superior de la pantalla.
 //
+//Cuadro BackGround de Fondo Ubicado en la parte superior de la pantalla.
+//Color Pink, primera componente del Stack
 class BackGroundBox extends StatelessWidget {
   const BackGroundBox({
     Key? key,
@@ -206,6 +250,11 @@ class BackGroundBox extends StatelessWidget {
             gradient: LinearGradient(
                 begin: Alignment.topRight,
                 end: Alignment.bottomRight,
+                //posiciona la degradacion de los colores
+                stops: [
+                  0.2,
+                  0.8
+                ],
                 colors: [
                   Color.fromARGB(255, 253, 196, 202),
                   Color(0XFFfe4bc4)

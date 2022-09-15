@@ -21,14 +21,14 @@ Avanzado - Con blur, grids background y más
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 ## Imagenes de Referencia
-Pantalla Inicial
+### Pantalla Inicial
 ![Pantalla Inicial](https://github.com/edwalpca/disenos2022/blob/main/info_proyecto/Screenshot_1663203449.png)
-Pantalla PageView 1
+### Pantalla PageView 1
 ![Pantalla PageView 1](https://github.com/edwalpca/disenos2022/blob/main/info_proyecto/Screenshot_1663203473.png)
-Pantalla PageView 2
+### Pantalla PageView 2
 ![Pantalla PageView 2](https://github.com/edwalpca/disenos2022/blob/main/info_proyecto/Screenshot_1663203476.png)
-Pantalla TableRow BackDropFilter
+### Pantalla TableRow BackDropFilter
 ![Pantalla TableRow BackDropFilter](https://github.com/edwalpca/disenos2022/blob/main/info_proyecto/Screenshot_1663202397.png)
-Pantalla TableRow
+### Pantalla TableRow
 ![Pantalla TableRow](https://github.com/edwalpca/disenos2022/blob/main/info_proyecto/Screenshot_1663202575.png)
 
